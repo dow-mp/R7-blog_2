@@ -36,4 +36,4 @@
 
 # Ignore notes 
 NOTES.md
-aptc_backup.rb
+associations_*.rb
