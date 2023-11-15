@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_07_184255) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_14_221154) do
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    # The follow two lines of code were originally added when creating the AddPostToComments migration and were subsequently removed when rolling back and then destroying the migration
+    # t.integer "post_id"
+    # t.index ["post_id"], name: "index_comments_on_post_id"
+  end
+
   create_table "pages", force: :cascade do |t|
     t.string "title"
     t.text "body"
