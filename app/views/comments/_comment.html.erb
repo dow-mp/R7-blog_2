@@ -1,0 +1,10 @@
+<div>
+    <strong><%= comment.name %> says:</strong>
+    <%= comment.content %>
+
+    <div class="comment-admin">
+        <%= link_to "Edit", edit_post_comment_path(@post, comment) %>
+        <%# link_to "Delete", [@post, comment], method: :delete %> <!-- This is from Rails 5 and does not work! Instead this forces a redirect to the items in the array i.e. /post/:post_id/comments/:id which won't work because there is no view for individual comments (they are viewed on the post's show page) --> 
+        <%= link_to "Delete", [@post, comment], data: { 'turbo-method': :delete} %>
+    </div>
+</div>

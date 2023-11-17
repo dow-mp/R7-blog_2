@@ -10,5 +10,33 @@
   <%= @post.body %>
 </p>
 
+<div id="comments">
+  <h1>Comments</h1>
+  <%# @post.comments.each do |comment| %>
+  <!-- removing the code block below into a partial as this would be best practice, esp as models become more complicated -->
+    <!-- <div>
+      <strong><%# comment.name %> says:</strong>
+      <%# comment.content %>
+    </div> -->
+
+    <!-- Rendering comments via a partial -->
+    <!-- rendering the comments partial from the views/comments folder, the _ and .html.erb are all added automatically by rails and therefore we do not need to include those in the file path below; we also pass along local variables we'll need by providing them in a hash with the name we'll use to refer to them in the partial (or the key) and the value --> 
+    <%# render partial: "comments/comment", locals: {comment: comment} %>
+  <%# end %>
+
+  <!-- Rendering comments via a partial (alternative methods) -->
+  <!-- instead of using the .each loop below, can take advantage of the render methods built in "collection" argument (this renders a collection), with this method we do not need to specify locals, instead we can use the keyword as: to specify the variable to which the current member of the collection should be assigned --> 
+  <%# render partial: "comments/comment", collection: @post.comments, as: :comment %> 
+
+  <%# render partial: "comments/comment", collection: @post.comments %>  <!-- "as: comment" is not necessary, the collection arg auto assigns the current member of the collection to a local variable with the same name as the partial (i.e. comment) -->
+
+  <%= render @post.comments %> <!-- ultimate shortcut here, the render method recognizes this as a collection and will then look for the partial in the corresponding views folder named "comments" to render the view -->
+  <!-- this method is much more difficult to read for a new rails dev as much of the context is built in and not explicit -->
+
+  <h2>Add a comment</h2>
+  <%= render partial: 'comments/form', locals: {comment: @post.comments.new} %>
+
+</div>
+
 <%= link_to 'Edit', edit_post_path(@post) %>
 <%= link_to 'Back', posts_path %>
