@@ -11,7 +11,10 @@
 </p>
 
 <div id="comments">
-  <h1>Comments</h1>
+  <% if @post.comments.present? %>
+  <!-- we should only render the comments heading when there are comments present, using the if statement wrapping the heading to conditionally render -->
+    <h1>Comments</h1>
+  <% end %>
   <%# @post.comments.each do |comment| %>
   <!-- removing the code block below into a partial as this would be best practice, esp as models become more complicated -->
     <!-- <div>
